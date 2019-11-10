@@ -1,15 +1,13 @@
-const home = (req, res) => res.send('Home');
-const search = (req, res) => res.send('Search');
-const videos = (req, res) => res.send('Videos');
-const upload = (req, res) => res.send('Upload');
-const detail = (req, res) => res.send('Video Detail');
-const edit = (req, res) => res.send('Video Edit');
-const videoDelete = (req, res) => res.send('Video Delete');
+const home = (req, res) => res.render('home', { pageTitle: "Home" });
+const search = (req, res) => res.render('search', { pageTitle: "Search" });
+const upload = (req, res) => res.render('upload', { pageTitle: "Upload" });
+const detail = (req, res) => res.render('detailVideo', { pageTitle: "Video detail" });
+const edit = (req, res) => res.render('editVideo', { pageTitle: "Edit Video" });
+const videoDelete = (req, res) => res.render('deleteVideo', { pageTitle: "Delete Video" });
 
 module.exports = {
   home: home,
   search: search,
-  videos: videos,
   upload: upload,
   detail: detail,
   edit: edit,
