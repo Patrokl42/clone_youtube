@@ -1,42 +1,23 @@
-const db = {
-  videos: [
-    {
-      id: 32112,
-      title: 'Video Awesome',
-      description: 'This is description',
-      views: 24,
-      videoFile: 'https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4',
-      creator: {
-        id: 242,
-        name: 'Nicolas',
-        email: 'nicolas@gmailcom',
-      }
-    },
-    {
-      id: 12352,
-      title: 'Video nice',
-      description: 'This is description',
-      views: 24,
-      videoFile: 'https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4',
-      creator: {
-        id: 242,
-        name: 'Nicolas',
-        email: 'nicolas@gmailcom',
-      }
-    },
-    {
-      id: 43212,
-      title: 'Video super',
-      description: 'This is description',
-      views: 24,
-      videoFile: 'https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4',
-      creator: {
-        id: 242,
-        name: 'Nicolas',
-        email: 'nicolas@gmailcom',
-      }
-    }
-  ]
+const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+dotenv.config()
+
+mongoose.connect(process.env.MONGO_URL,
+  {
+    useNewUrlParser: true,
+    useFindAndModify: false
+  }
+);
+
+const db = mongoose.connection
+
+const handleOpen = () => {
+  console.log('Connected To db')
 }
 
-module.exports = db;
+const handleError = (error) => {
+  console.log(`Error on db: ${error}`)
+}
+
+db.once('open', handleOpen)
+db.on('error', handleError)

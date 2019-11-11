@@ -1,8 +1,14 @@
-const db = require('../db');
 const routes = require('../routes');
+const Video = require('../models/Video');
 
-const home = (req, res) => {
-  res.render('home', { pageTitle: 'Home', videos: db.videos })
+const home = async (req, res) => {
+  try {
+    const videos = await Video.find({});
+    res.render('home', { pageTitle: 'Home', videos })
+  } catch (err) {
+    console.log(err);
+    res.render('home', { pageTitle: 'Home', videos: [] })
+  }
 };
 
 const search = (req, res) => {
