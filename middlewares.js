@@ -1,13 +1,21 @@
-const routes = require('./routes');
+const routes = require('./routes')
+const multer = require('multer')
+
+const multerVideo = multer({ dest: 'uploads/videos/' })
 
 const localsMiddleware = (req, res, next) => {
-  res.locals.siteName = "weTube";
-  res.locals.routes = routes;
+  res.locals.siteName = 'weTube'
+  res.locals.routes = routes
   res.locals.user = {
     isAuthenticated: true,
     id: 1
   }
-  next();
+  next()
 }
 
-module.exports = localsMiddleware;
+const uploadVideo= multerVideo.single('videoFile');
+
+module.exports = {
+  uploadVideo,
+  localsMiddleware
+}

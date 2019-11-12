@@ -3,6 +3,7 @@ const db = require('./db');
 const dotenv = require('dotenv');
 const Video = require('./models/Video');
 const Comment = require('./models/Comment');
+
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
