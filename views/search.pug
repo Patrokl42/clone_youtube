@@ -5,9 +5,12 @@ block content
     .search__header
         h3 Searsching by #{searchingBy}
     .search__videos
+        if videos.length === 0
+            h5 No Videos Found
         each video in videos
             +videoBlock({
               title: video.title,
               videoFile: video.videoFile,
-              views: video.views
+              views: video.views,
+              id: video.id
             })
